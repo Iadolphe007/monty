@@ -73,6 +73,16 @@ stack_t add_node_front(stack_t **head, int n);
 stack_t *new_node_end(stack_t **stack, int n);
 stack_t *new_stack_node(stack_t **stack, int n);
 
+int op_check(stack_t *stack);
+void free_node(stack_t **stack);
+int stack_node(stack_t **stack);
+
+char *get_integer(int num);
+unsigned int absolut(int i);
+int buff_len(unsigned int num, unsigned int base);
+void full_buff(unsigned int num, unsigned int base, char *buff, int buff_size);
+int _isdigit(void);
+
 
 
 

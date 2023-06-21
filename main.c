@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 		flag2 = 0;
 		line_num++;
 		token = strtok(global.el_n, DELIM);
-		global.token2 = strtok(NULL, DELIM);
+		global.arg = strtok(NULL, DELIM);
 		if (token == NULL)
 		{
 			flag2 = 1;

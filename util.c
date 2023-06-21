@@ -85,11 +85,11 @@ void full_buff(unsigned int num, unsigned int base, char *buff, int buff_size)
 int _isdigit(void)
 {
 	int x = 0;
-	if (global.token2[0] == '-' || global.token2[0] == '+')
+	if (global.arg[0] == '-' || global.arg[0] == '+')
 		x++;
-	while (global.token2[x])
+	while (global.arg[x])
 	{
-		if (isdigit(global.token2[x] == 0))
+		if (isdigit(global.arg[x] == 0))
 		{
 			return (0);
 		}
