@@ -6,12 +6,24 @@
  */
 void free_stack(stack_t *head)
 {
-	stack_t *current = head;
-	stack_t *temp;
+	stack_t *current = NULL;
+	stack_t *temp = NULL;
+	
+	temp = head;
 	while(current !=NULL)
 	{
-		temp = current->next;
-		free(current);
-		current = temp;
+		current = temp->next;
+		free(temp);
+		temp = current;
 	}
+}
+
+/**
+ * free_global - frees global list
+ */
+void free_global(void)
+{
+	fclose(global.el_p);
+	free(global.el_n);
+
 }

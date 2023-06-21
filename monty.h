@@ -57,15 +57,22 @@ typedef struct instruction_s
 typedef struct data_s
 {
 	char *arg;
-	FILE *fptr;
-	char *content;
-	int flag_x;
-} data_t;
+	FILE *el_p;
+	char *el_n;
+} global_t;
 
-extern data_t data;
+extern global_t global;
 
+void free_global(void);
 void free_stack(stack_t *head);
-int main(int argc, char *argv[]);
+int get_builtin(char *token, stack_t **stack, unsigned int line_number);
+
+/*list function prototype*/
+stack_t add_node_front(stack_t **head, int n);
+stack_t *new_node_end(stack_t **stack, int n);
+stack_t *new_stack_node(stack_t **stack, int n);
+
+
 
 
 
