@@ -63,6 +63,7 @@ typedef struct data_s
 
 extern global_t global;
 
+int main(int argc, char **argv)
 void free_global(void);
 void free_stack(stack_t *head);
 int get_builtin(char *token, stack_t **stack, unsigned int line_number);
