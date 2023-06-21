@@ -86,7 +86,7 @@ stack_t add_node_front(stack_t **head, int n)
 	}
 	new_node->n = n;
 	(*head)->prev = new_node;
-	new_node->nect = *head;
+	new_node->next = *head;
 	*head = new_node;
 	return (new_node);
 }
