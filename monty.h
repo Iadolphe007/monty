@@ -54,7 +54,7 @@ typedef struct instruction_s
  * Description: carries values through the program
  */
 
-typedef struct data
+typedef struct data_s
 {
 	char *arg;
 	FILE *fptr;
@@ -62,9 +62,11 @@ typedef struct data
 	int flag_x;
 } data_t;
 
+extern data_t data;
 
+void free_stack(stack_t *head);
+int main(int argc, char *argv[]);
 
-		/* ERROR MESSAGE AND FUNCTION*/
 
 
 #endif
