@@ -10,6 +10,10 @@
 #include <unistd.h>
 #include <ctype.h>
 
+#define STACK 0
+#define QUEUE 1
+#define DELIMS " \n\t\a\b"
+
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -40,5 +44,27 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/**
+ * struct data - carries variable
+ * @fptr: pointer to monty file
+ * @arg: argument
+ * @content: line content
+ * flag to change stack <-> queue
+ * Description: carries values through the program
+ */
+
+typedef struct data
+{
+	char *arg;
+	FILE *fptr;
+	char *content;
+	int flag_x;
+} data_t;
+
+
+
+		/* ERROR MESSAGE AND FUNCTION*/
+
 
 #endif
