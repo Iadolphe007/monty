@@ -103,5 +103,9 @@ void error_pchar(unsigned int line_number, char *msg);
 void error_fun(unsigned int line_number, char *op);
 void error_pint(unsigned int line_number);
 
-
+void pop(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
+void mul(stack_t **stack, unsigned int line_number);
 #endif

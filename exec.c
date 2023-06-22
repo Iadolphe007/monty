@@ -10,8 +10,17 @@
 int get_builtin(char *token, stack_t **stack, unsigned int line_number)
 {
 	instruction_t op_code[] = {
-		{"push", push}, {"pall", pall}, {"nop", nop},
-		{"pint", pint}, {"swap", swap}, {NULL, NULL}
+		{ "push", push },
+		{ "pall", pall },
+		{ "nop", nop },
+		{ "pint", pint },
+		{ "swap", swap },
+		{ "pop", pop },
+		{ "add", add },
+		{ "sub", sub },
+		{ "mul", mul },
+		{ "pchar", pchar },
+		{NULL, NULL}
 	};
 
 	int i, flag  = 0;
