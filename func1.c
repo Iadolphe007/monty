@@ -67,7 +67,7 @@ void pint(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL || *stack == NULL)
 	{
-		pint_e(line_number);
+		error_pint(line_number);
 		return;
 	}
 	current = *stack;
@@ -87,10 +87,10 @@ void swap(stack_t **stack, unsigned int line_number)
 	int i, j;
 
 	if (*stack == NULL || stack == NULL)
-		op_e(line_number, "swap");
+		error_fun(line_number, "swap");
 	current = (*stack)->next;
 	if ((*stack)->next == NULL)
-		op_e(line_number, "swap");
+		error_fun(line_number, "swap");
 	while (current->next != NULL)
 	{
 		current = current->next;
@@ -110,5 +110,4 @@ void nop(stack_t **stack, unsigned int line_number)
 	(void)stack;
 	(void)line_number;
 }
-
 

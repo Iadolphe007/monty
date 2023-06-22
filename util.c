@@ -21,7 +21,7 @@ char *get_integer(int num)
 	buf = malloc(len + 1);
 	if (!buf)
 		return (NULL);
-	full_buff(temp, 10, buf, len);
+	full_buf(temp, 10, buf, len);
 	if (num < 0 || num_v < 0)
 		buf[0] = '-';
 	return (buf);

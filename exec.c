@@ -9,14 +9,9 @@
  */
 int get_builtin(char *token, stack_t **stack, unsigned int line_number)
 {
-	instruction_t op_built[] = {
-		{ "push", push }, { "pall", pall}, { "pop", pop },
-		{ "add", add }, { "nop", nop }, { "sub", sub },
-		{ "pall", pall }, { "pint", pint }, { "swap", swap },
-		{ "mul", mul }, { "div", div_m }, { "pchar", pchar },
-		{ "mod", mod_m }, { "\n", nop }, { " ", nop },
-		{ "\t", nop }, { "pstr", pstr_t }, { "rotl", rotrl },
-		{ "rotr", rotr }, { NULL, NULL }
+	instruction_t op_code[] = {
+		{"push", push}, {"pall", pall}, {"nop", nop},
+		{"pint", pint}, {"swap", swap}, {NULL, NULL}
 	};
 
 	int i, flag  = 0;
@@ -25,12 +20,12 @@ int get_builtin(char *token, stack_t **stack, unsigned int line_number)
 	if (stack == NULL || token == NULL)
 		return (0);
 	argument = token;
-	for (i = 0; op_built[i].opcode; i++)
+	for (i = 0; op_code[i].opcode; i++)
 	{
-		if (strcmp(argument, op_built[i].opcode) == 0)
+		if (strcmp(argument, op_code[i].opcode) == 0)
 		{
 			flag = 1;
-			op_built[i].f(stack, line_number);
+			op_code[i].f(stack, line_number);
 			break;
 		}
 	}

@@ -64,6 +64,7 @@ typedef struct global_s
 extern global_t global;
 
 int main(int argc, char **argv);
+void process_line(char *line, stack_t **stack, int line_num);
 void free_global(void);
 void free_stack(stack_t *head);
 int get_builtin(char *token, stack_t **stack, unsigned int line_number);
@@ -80,7 +81,7 @@ int stack_node(stack_t **stack);
 char *get_integer(int num);
 unsigned int absolut(int i);
 int buff_len(unsigned int num, unsigned int base);
-void full_buff(unsigned int num, unsigned int base, char *buff, int buff_size);
+void full_buf(unsigned int num, unsigned int base, char *buff, int buff_size);
 int _isdigit(void);
 
 /*mandatory task prototype*/

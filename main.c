@@ -1,56 +1,57 @@
 #include "monty.h"
+
 global_t global = {NULL, NULL, NULL};
+#define MAX_LINE_LENGTH 1024
+
 /**
- * main - monty code interpreter
- * @argc: argument count
- * @argv: argument vector
+ * process_line - Process a single line of Monty code
+ * @line: The line to process
+ * @stack: Pointer to the stack
+ * @line_num: Line number
+ */
+void process_line(char *line, stack_t **stack, int line_num)
+{
+	char *token;
+
+	token = strtok(line, DELIMS);
+
+	if (token == NULL)
+	{
+		nop(stack, line_num);
+		return;
+	}
+	if (token[0] == '#')
+		return;
+	get_builtin(token, stack, line_num);
+}
+/**
+ * main - Monty code interpreter
+ * @argc: Argument count
+ * @argv: Argument vector
  * Return: 0
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	char *token = NULL;
-	size_t line_buf = 0;
-	int line_num = 0, flag = 0, flag2 = 0;
-	ssize_t line_size;
+	char line[MAX_LINE_LENGTH];
+	int line_num = 0;
+	FILE *file;
 	stack_t *stack = NULL;
 
 	if (argc != 2)
 		stderr_usage();
-	global.el_p = fopen(argv[1], "r");
-	if (global.el_p == NULL)
+	
+	file = fopen(argv[1], "r");
+	if (file == NULL)
 		stderr_fopen(argv[1]);
-	line_size = getline(&global.el_n, &line_buf, global.el_p);
-	if (global.el_n[0] == '#')
-		line_size = getline(&global.el_n, &line_buf, global.el_p);
-	while (line_size >= 0)
+
+	while (fgets(line, sizeof(line), file))
 	{
-		flag = 0;
-		flag2 = 0;
 		line_num++;
-		token = strtok(global.el_n, DELIMS);
-		global.arg = strtok(NULL, DELIMS);
-		if (token == NULL)
-		{
-			flag2 = 1;
-			nop(&stack, line_num);
-		}
-		if (flag2 == 0)
-		{
-			if (token[0] == '#')
-			{
-				line_size = getline(&global.el_p, &line_buf, global.el_p);
-				flag = 1;
-			}
-		}
-		if (flag == 0)
-		{
-			get_builtin(token, &stack, line_num);
-			line_size = getline(&global.el_n, &line_buf, global.el_p);
-		}
+		if (line[strlen(line) - 1] == '\n')
+			line[strlen(line) - 1] = '\0';
+		process_line(line, &stack, line_num);
 	}
 	free_stack(stack);
-	free(global.el_n);
-	global.el_p = NULL;
-	fclose(global.el_p);
+	fclose(file);
 	return (EXIT_SUCCESS);
 }
