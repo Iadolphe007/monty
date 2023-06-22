@@ -1,6 +1,7 @@
 #include "monty.h"
 
 global_t global = {NULL, NULL, NULL};
+
 #define MAX_LINE_LENGTH 1024
 
 /**
@@ -39,7 +40,6 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 		stderr_usage();
-	
 	file = fopen(argv[1], "r");
 	if (file == NULL)
 		stderr_fopen(argv[1]);
