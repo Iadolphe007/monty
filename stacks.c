@@ -3,7 +3,7 @@
 /**
  * stack_node - create stack
  * @stack: pointer to top aof a stack
- * Retrun 0
+ * Return: 0
  */
 
 int stack_node(stack_t **stack)
@@ -20,8 +20,8 @@ int stack_node(stack_t **stack)
 	tmp->n = STACK;
 	tmp->prev = NULL;
 	tmp->next = NULL;
-	*stack = stack;
-	return(0);
+	*stack = tmp;
+	return (0);
 }
 /**
  * free_node - free node at stack
@@ -31,14 +31,15 @@ void free_node(stack_t **stack)
 {
 	stack_t *tmp = *stack;
 
-	while(*stack)
+	while (*stack)
 	{
 		tmp = (*stack)->next;
 		free(*stack);
 		*stack = tmp;
 	}
 }
-/**op_check - check for stack or queue
+/**
+ * op_check - check for stack or queue
  * @stack: a pointer to stack
  * Return: value of stack or queue
  */
@@ -51,5 +52,5 @@ int op_check(stack_t *stack)
 		return (STACK);
 	else if (stack->n == QUEUE)
 		return (QUEUE);
-	return(ret_val);
+	return (ret_val);
 }

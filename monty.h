@@ -46,15 +46,15 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
- * struct data - carries variable
- * @fptr: pointer to monty file
+ * global_s - carries variable
+ * @el_p: pointer to monty file
  * @arg: argument
- * @content: line content
+ * @el_n: line content
  * flag to change stack <-> queue
  * Description: carries values through the program
  */
 
-typedef struct data_s
+typedef struct global_s
 {
 	char *arg;
 	FILE *el_p;
@@ -63,13 +63,13 @@ typedef struct data_s
 
 extern global_t global;
 
-int main(int argc, char **argv)
+int main(int argc, char **argv);
 void free_global(void);
 void free_stack(stack_t *head);
 int get_builtin(char *token, stack_t **stack, unsigned int line_number);
 
 /*list function prototype*/
-stack_t add_node_front(stack_t **head, int n);
+stack_t *add_node_front(stack_t **head, int n);
 stack_t *new_node_end(stack_t **stack, int n);
 stack_t *new_stack_node(stack_t **stack, int n);
 
@@ -83,8 +83,24 @@ int buff_len(unsigned int num, unsigned int base);
 void full_buff(unsigned int num, unsigned int base, char *buff, int buff_size);
 int _isdigit(void);
 
+/*mandatory task prototype*/
+void nop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number);
 
-
+/* errors*/
+void stderr_usage(void);
+void stderr_malloc(void);
+void stderr_fopen(char *filename);
+void stderr_int(unsigned int line_number);
+void stderr_unknown(char *token, unsigned int line_number);
+void error_pop(unsigned int line_number);
+void error_div(unsigned int line_number);
+void error_pchar(unsigned int line_number, char *msg);
+void error_fun(unsigned int line_number, char *op);
+void error_pint(unsigned int line_number);
 
 
 #endif

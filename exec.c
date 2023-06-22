@@ -20,14 +20,14 @@ int get_builtin(char *token, stack_t **stack, unsigned int line_number)
 	};
 
 	int i, flag  = 0;
-	char *argument = NULL
+	char *argument = NULL;
 
 	if (stack == NULL || token == NULL)
 		return (0);
-	argment = token;
+	argument = token;
 	for (i = 0; op_built[i].opcode; i++)
 	{
-		if (strcmp(argumentos, op_built[i].opcode) == 0)
+		if (strcmp(argument, op_built[i].opcode) == 0)
 		{
 			flag = 1;
 			op_built[i].f(stack, line_number);

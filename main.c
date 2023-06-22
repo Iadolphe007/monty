@@ -1,5 +1,5 @@
 #include "monty.h"
-data_t data = {NULL, NULL, NULL, 0};
+global_t global = {NULL, NULL, NULL};
 /**
  * main - monty code interpreter
  * @argc: argument count
@@ -15,25 +15,20 @@ int main(int argc, char *argv[])
 	stack_t *stack = NULL;
 
 	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
+		stderr_usage();
 	global.el_p = fopen(argv[1], "r");
 	if (global.el_p == NULL)
-	{
 		stderr_fopen(argv[1]);
-	}
 	line_size = getline(&global.el_n, &line_buf, global.el_p);
-	if (global.el-n[0] == '#')
+	if (global.el_n[0] == '#')
 		line_size = getline(&global.el_n, &line_buf, global.el_p);
-	while(line_size >= 0)
+	while (line_size >= 0)
 	{
 		flag = 0;
 		flag2 = 0;
 		line_num++;
-		token = strtok(global.el_n, DELIM);
-		global.arg = strtok(NULL, DELIM);
+		token = strtok(global.el_n, DELIMS);
+		global.arg = strtok(NULL, DELIMS);
 		if (token == NULL)
 		{
 			flag2 = 1;
@@ -50,7 +45,7 @@ int main(int argc, char *argv[])
 		if (flag == 0)
 		{
 			get_builtin(token, &stack, line_num);
-			line_size = getline(&global;.el_n, &line_buf, global.el_p);
+			line_size = getline(&global.el_n, &line_buf, global.el_p);
 		}
 	}
 	free_stack(stack);
@@ -58,5 +53,4 @@ int main(int argc, char *argv[])
 	global.el_p = NULL;
 	fclose(global.el_p);
 	return (EXIT_SUCCESS);
-
 }

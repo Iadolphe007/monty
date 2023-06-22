@@ -13,22 +13,22 @@ char *get_integer(int num)
 	int len = 0;
 	char *buf;
 
-	temp = abs_m(num);
-	len = len_buff_uint(temp, 10);
+	temp = absolut(num);
+	len = buff_len(temp, 10);
 
 	if (num < 0 || num_v < 0)
 		len++;
 	buf = malloc(len + 1);
-	if(!buf)
+	if (!buf)
 		return (NULL);
 	full_buff(temp, 10, buf, len);
 	if (num < 0 || num_v < 0)
 		buf[0] = '-';
-	return (buf); 
+	return (buf);
 }
 /**
  * absolut -  return abs of int
- * @i: integer 
+ * @i: integer
  * Return: i
  */
 unsigned int absolut(int i)
@@ -48,6 +48,7 @@ unsigned int absolut(int i)
 int buff_len(unsigned int num, unsigned int base)
 {
 	int len = 1;
+
 	while (num > base - 1)
 	{
 		len++;
@@ -63,9 +64,10 @@ int buff_len(unsigned int num, unsigned int base)
  * @buff_size: size of buffer
  */
 
-void full_buff(unsigned int num, unsigned int base, char *buff, int buff_size)
+void full_buf(unsigned int num, unsigned int base, char *buff, int buff_size)
 {
 	int i, x = buff_size - 1;
+
 	while (x >= 0)
 	{
 		i = num % base;
@@ -85,6 +87,7 @@ void full_buff(unsigned int num, unsigned int base, char *buff, int buff_size)
 int _isdigit(void)
 {
 	int x = 0;
+
 	if (global.arg[0] == '-' || global.arg[0] == '+')
 		x++;
 	while (global.arg[x])
