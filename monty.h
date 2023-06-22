@@ -59,6 +59,7 @@ typedef struct global_s
 	char *arg;
 	FILE *el_p;
 	char *el_n;
+	int lifi;
 } global_t;
 
 extern global_t global;
@@ -108,4 +109,13 @@ void add(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
+
+void pstr(stack_t **head, unsigned int counter);
+void f_stack(stack_t **head, unsigned int counter);
+void rotr(stack_t **head, __attribute__((unused)) unsigned int counter);
+void rotl(stack_t **head,  __attribute__((unused)) unsigned int counter);
+
+void add_queue(stack_t **head, int n);
+void queue(stack_t **head, unsigned int counter);
+
 #endif

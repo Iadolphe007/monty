@@ -20,6 +20,11 @@ int get_builtin(char *token, stack_t **stack, unsigned int line_number)
 		{ "sub", sub },
 		{ "mul", mul },
 		{ "pchar", pchar },
+		{"stack", f_stack},
+		{"queue", queue},
+		{"rotr", rotr},
+		{"rotl", rotl},
+		{"pstr", pstr},
 		{NULL, NULL}
 	};
 
